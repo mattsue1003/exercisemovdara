@@ -70,7 +70,11 @@
   .controls{position:sticky;top:0;z-index:20;background:rgba(255,246,236,.95);backdrop-filter:blur(10px);
     border-bottom:1px solid var(--line);padding:12px 0;margin-top:16px}
   .toolbar{display:flex;gap:9px;align-items:center;flex-wrap:wrap}
-  .search{flex:1;min-width:200px;min-height:var(--tap);padding:12px 16px 12px 46px;border:2px solid var(--line);
+  .act{display:flex;gap:9px;flex-wrap:wrap}
+  .io-row{display:flex;gap:9px}
+  .filtBtn .fdot{display:none;width:9px;height:9px;border-radius:50%;background:var(--brand)}
+  .filtBtn.has .fdot{display:inline-block}
+  .search{flex:1 1 100%;min-width:0;min-height:var(--tap);padding:12px 16px 12px 46px;border:2px solid var(--line);
     border-radius:14px;font-size:1.03rem;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%238a7868' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='7'/%3E%3Cpath d='M14 14l5 5'/%3E%3C/svg%3E") no-repeat 15px center}
   .search:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-l)}
   .btn{min-height:var(--tap);display:inline-flex;align-items:center;gap:7px;padding:0 16px;border-radius:14px;
@@ -154,12 +158,22 @@
     opacity:0;pointer-events:none;transition:.25s;z-index:30}
   .top.show{opacity:1;pointer-events:auto}
 
+  @media(min-width:681px){ .filtBtn{display:none} .filters{display:flex!important} }
   @media(max-width:820px){.fcard{grid-template-columns:1fr}.fthumb{aspect-ratio:16/9;min-height:0}}
   @media(max-width:680px){
     body{font-size:16px}
+    .controls{position:static;padding:10px 0}
+    .act{width:100%}
+    .act .btn{flex:1 1 auto;justify-content:center;padding:0 10px;font-size:.9rem}
+    .io-row{width:100%}
+    .io-row .btn{flex:1;justify-content:center}
+    .filters{display:none;margin-top:10px}
+    .filters.open{display:flex}
     .selwrap{flex:1 1 calc(50% - 5px);min-width:0}
     .row2{grid-template-columns:1fr}
     .grid{gap:15px}
+    .feature{margin-top:-16px}
+    .fbody{padding:18px 18px 20px}
   }
 </style>
 </head>
@@ -179,13 +193,18 @@
   <div class="wrap">
     <div class="toolbar">
       <input id="q" class="search" type="search" inputmode="search" placeholder="搜尋影片、頻道、類型…（例：毛巾、坐姿、有氧）" aria-label="搜尋">
-      <button class="btn fav" id="favBtn">♥ 我的最愛 <span id="favCount">0</span></button>
-      <button class="btn primary" id="addBtn">＋ 新增影片</button>
-      <button class="btn" id="expBtn">⬇ 匯出 JSON</button>
-      <button class="btn" id="impBtn">⬆ 匯入 JSON</button>
+      <div class="act">
+        <button class="btn fav" id="favBtn">♥ 我的最愛 <span id="favCount">0</span></button>
+        <button class="btn primary" id="addBtn">＋ 新增影片</button>
+        <button class="btn filtBtn" id="filtBtn" aria-expanded="false">⚙ 篩選 <span class="fdot"></span></button>
+      </div>
+      <div class="io-row">
+        <button class="btn" id="expBtn">⬇ 匯出 JSON</button>
+        <button class="btn" id="impBtn">⬆ 匯入 JSON</button>
+      </div>
       <input type="file" id="impFile" accept="application/json,.json" hidden>
     </div>
-    <div class="filters">
+    <div class="filters" id="filters">
       <div class="selwrap"><label>長度</label><select id="fLen"></select></div>
       <div class="selwrap"><label>分鐘數</label><select id="fMin"></select></div>
       <div class="selwrap"><label>姿勢</label><select id="fPos"></select></div>
@@ -379,6 +398,8 @@ function refreshBadges(){
     `<span class="hb">🕙 10 分鐘以上 ${DATA.length-c5} 部</span><span class="hb">🌏 台 / 港 / 日 / 歐美</span>`;
   document.getElementById("favCount").textContent=favs.size;
   document.getElementById("favBtn").classList.toggle("on",state.fav);
+  const anyF=["len","min","pos","type","lang","country"].some(k=>state[k]!=="全部");
+  const fb=document.getElementById("filtBtn"); if(fb) fb.classList.toggle("has",anyF);
 }
 function resetAll(){Object.assign(state,DEFAULT);document.getElementById("q").value="";fillSelects();refreshBadges();render();}
 window.resetAll=resetAll;
@@ -392,6 +413,8 @@ document.getElementById("q").addEventListener("input",e=>{state.q=e.target.value
 });
 document.getElementById("clear").addEventListener("click",resetAll);
 document.getElementById("favBtn").addEventListener("click",()=>{state.fav=!state.fav;refreshBadges();render();});
+(function(){const fb=document.getElementById("filtBtn"),fl=document.getElementById("filters");
+  if(fb)fb.addEventListener("click",()=>{const o=fl.classList.toggle("open");fb.setAttribute("aria-expanded",o);});})();
 document.addEventListener("click",e=>{
   const fb=e.target.closest(".favbtn");
   if(fb){e.preventDefault();const id=fb.dataset.fav;favs.has(id)?favs.delete(id):favs.add(id);save(LS_FAV,[...favs]);refreshBadges();render();}
