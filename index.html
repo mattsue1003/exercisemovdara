@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#15705a">
+<meta name="description" content="樂齡運動教案資料庫：一週一部，52 週都有新的銀髮運動影片。日照中心與社區關懷據點可直接播放、跟著影片做運動。">
+<title>樂齡運動教案資料庫｜一週一部，陪長輩動一動</title>
+<style>
+  :root{
+    --bg:#f5f4ef; --card:#ffffff; --ink:#22323c; --sub:#6b7884;
+    --brand:#2f8f6b; --brand-d:#1d6a4e; --brand-l:#e7f3ed;
+    --accent:#ef8354; --accent-d:#d96a3c; --accent-l:#fdeee6;
+    --gold:#e0a23c;
+    --line:#e9e7df; --chip:#f0eee7;
+    --shadow:0 1px 2px rgba(34,50,60,.05), 0 8px 24px rgba(34,50,60,.07);
+    --shadow-h:0 14px 36px rgba(34,50,60,.16);
+    --radius:20px; --tap:48px;
+    --serif:"Noto Serif TC",Georgia,serif;
+    --sans:"Noto Sans TC","PingFang TC","Microsoft JhengHei",system-ui,sans-serif;
+  }
+  *{box-sizing:border-box;-webkit-tap-highlight-color:transparent}
+  html{scroll-behavior:smooth}
+  body{margin:0;font-family:var(--sans);background:var(--bg);color:var(--ink);
+    font-size:17px;line-height:1.65;-webkit-text-size-adjust:100%}
+  .wrap{width:100%;max-width:1180px;margin:0 auto;padding:0 18px}
+  img{max-width:100%}
+  h1,h2,h3{margin:0}
+
+  /* ---------- HERO ---------- */
+  .hero{position:relative;overflow:hidden;
+    background:radial-gradient(1200px 400px at 80% -10%,#3aa37c 0%,transparent 60%),
+               linear-gradient(135deg,#2f8f6b,#1a6249);
+    color:#fff;padding:max(30px,env(safe-area-inset-top)) 0 34px}
+  .hero .blob{position:absolute;border-radius:50%;background:rgba(255,255,255,.07);pointer-events:none}
+  .hero .b1{width:260px;height:260px;top:-90px;right:-40px}
+  .hero .b2{width:160px;height:160px;bottom:-70px;left:10%}
+  .hero .b3{width:90px;height:90px;top:30px;left:42%;background:rgba(255,255,255,.05)}
+  .brand{display:flex;align-items:center;gap:10px;font-weight:800;
+    font-size:clamp(1.5rem,4.6vw,2.15rem);letter-spacing:.5px}
+  .brand .logo{font-size:1.15em;filter:drop-shadow(0 2px 4px rgba(0,0,0,.2))}
+  .tagline{margin:10px 0 0;opacity:.96;font-size:clamp(1rem,2.7vw,1.15rem);font-weight:500}
+  .hero-badges{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px}
+  .hb{background:rgba(255,255,255,.16);border:1px solid rgba(255,255,255,.28);
+    padding:6px 14px;border-radius:999px;font-size:.86rem;font-weight:600}
+
+  /* ---------- FEATURE (本週) ---------- */
+  .feature{margin:-22px auto 8px;position:relative;z-index:3}
+  .fcard{background:var(--card);border-radius:24px;box-shadow:var(--shadow-h);
+    overflow:hidden;display:grid;grid-template-columns:minmax(0,1.05fr) minmax(0,1fr);
+    border:1px solid var(--line)}
+  .fthumb{position:relative;display:block;background:#0a0a0a;min-height:230px}
+  .fthumb img{width:100%;height:100%;object-fit:cover;display:block;position:absolute;inset:0}
+  .fplay{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .fplay span{width:74px;height:74px;border-radius:50%;background:rgba(220,40,40,.94);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:1.9rem;padding-left:5px;
+    box-shadow:0 6px 20px rgba(0,0,0,.4);transition:.18s}
+  .fthumb:hover .fplay span{transform:scale(1.1);background:#e60000}
+  .fribbon{position:absolute;left:0;top:18px;background:var(--accent);color:#fff;
+    font-weight:800;font-size:.92rem;padding:8px 16px 8px 14px;border-radius:0 999px 999px 0;
+    box-shadow:0 4px 12px rgba(217,106,60,.45);letter-spacing:.5px}
+  .fdur{position:absolute;right:12px;bottom:12px;background:rgba(0,0,0,.82);color:#fff;
+    padding:4px 11px;border-radius:8px;font-size:.9rem;font-weight:700}
+  .fbody{padding:22px 24px 24px;display:flex;flex-direction:column;gap:12px}
+  .feyebrow{display:inline-flex;align-items:center;gap:8px;color:var(--accent-d);
+    font-weight:800;font-size:.95rem;letter-spacing:1px}
+  .feyebrow .wk{background:var(--accent-l);padding:3px 12px;border-radius:999px}
+  .ftitle{font-family:var(--serif);font-weight:700;font-size:clamp(1.3rem,3.3vw,1.7rem);line-height:1.35}
+  .fmeta{color:var(--sub);font-size:.95rem}
+  .fmeta b{color:var(--ink)}
+  .ftags{display:flex;flex-wrap:wrap;gap:7px}
+  .fnote{color:var(--sub);font-size:.96rem;margin:0}
+  .fopen{margin-top:6px;align-self:flex-start;display:inline-flex;align-items:center;gap:9px;
+    background:var(--accent);color:#fff;text-decoration:none;padding:13px 26px;border-radius:14px;
+    font-weight:800;font-size:1.05rem;transition:.16s;box-shadow:0 6px 16px rgba(217,106,60,.35)}
+  .fopen:hover{background:var(--accent-d);transform:translateY(-1px)}
+
+  /* ---------- CONTROLS ---------- */
+  .controls{position:sticky;top:0;z-index:20;background:rgba(245,244,239,.94);
+    backdrop-filter:blur(10px);border-bottom:1px solid var(--line);padding:12px 0;margin-top:18px}
+  .ctop{display:flex;gap:10px;align-items:center}
+  .search{flex:1;min-height:var(--tap);padding:12px 16px 12px 46px;border:2px solid var(--line);
+    border-radius:14px;font-size:1.05rem;background:#fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='20' height='20' fill='none' stroke='%236b7884' stroke-width='2' stroke-linecap='round'%3E%3Ccircle cx='9' cy='9' r='7'/%3E%3Cpath d='M14 14l5 5'/%3E%3C/svg%3E") no-repeat 15px center}
+  .search:focus{outline:none;border-color:var(--brand);box-shadow:0 0 0 4px var(--brand-l)}
+  .seg{display:inline-flex;background:#fff;border:2px solid var(--line);border-radius:14px;padding:3px;gap:2px}
+  .seg button{border:none;background:none;font-family:var(--sans);font-weight:700;font-size:.92rem;
+    color:var(--sub);padding:9px 14px;border-radius:11px;cursor:pointer;white-space:nowrap;transition:.15s}
+  .seg button.on{background:var(--brand);color:#fff}
+  .moreBtn{min-height:var(--tap);display:inline-flex;align-items:center;gap:6px;padding:0 16px;
+    border:2px solid var(--line);background:#fff;border-radius:14px;font-weight:700;color:var(--ink);
+    cursor:pointer;white-space:nowrap;font-size:.95rem}
+  .moreBtn .dot{display:none;width:9px;height:9px;border-radius:50%;background:var(--accent)}
+  .moreBtn.has .dot{display:inline-block}
+  .panel{display:none;margin-top:12px;background:#fff;border:1px solid var(--line);
+    border-radius:16px;padding:14px 16px;flex-direction:column;gap:11px}
+  .panel.open{display:flex}
+  .group{display:flex;align-items:flex-start;gap:10px}
+  .group .lbl{flex:0 0 42px;font-size:.9rem;font-weight:800;color:var(--sub);padding-top:7px}
+  .pills{display:flex;flex-wrap:wrap;gap:8px;flex:1}
+  .pill{min-height:38px;display:inline-flex;align-items:center;border:1.5px solid var(--line);
+    background:#fff;color:var(--sub);padding:5px 14px;border-radius:999px;font-size:.92rem;
+    cursor:pointer;transition:.15s;font-weight:600}
+  .pill:hover{border-color:var(--brand);color:var(--brand-d)}
+  .pill.on{background:var(--brand);border-color:var(--brand);color:#fff}
+  .bar2{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:13px 0 0;flex-wrap:wrap}
+  .count{color:var(--sub);font-size:.95rem;font-weight:700}
+  .clear{display:none;background:none;border:none;color:var(--accent-d);font-weight:700;
+    cursor:pointer;font-size:.95rem;text-decoration:underline}
+  .clear.show{display:inline-block}
+
+  /* ---------- SECTION + GRID ---------- */
+  .sec{padding:22px 0 8px;display:flex;align-items:baseline;gap:12px}
+  .sec h2{font-family:var(--serif);font-size:1.4rem;font-weight:700}
+  .sec span{color:var(--sub);font-size:.92rem}
+  .grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(min(100%,290px),1fr));
+    gap:20px;padding:4px 0 60px}
+  .card{background:var(--card);border:1px solid var(--line);border-radius:var(--radius);
+    overflow:hidden;box-shadow:var(--shadow);display:flex;flex-direction:column;transition:.2s;position:relative}
+  @media(hover:hover){.card:hover{transform:translateY(-5px);box-shadow:var(--shadow-h)}}
+  .thumb{position:relative;display:block;aspect-ratio:16/9;background:#0a0a0a;overflow:hidden}
+  .thumb img{width:100%;height:100%;object-fit:cover;display:block;transition:.3s}
+  @media(hover:hover){.card:hover .thumb img{transform:scale(1.06)}}
+  .play{position:absolute;inset:0;display:flex;align-items:center;justify-content:center}
+  .play span{width:58px;height:58px;border-radius:50%;background:rgba(220,40,40,.92);color:#fff;
+    display:flex;align-items:center;justify-content:center;font-size:1.45rem;padding-left:4px;
+    box-shadow:0 4px 14px rgba(0,0,0,.35);transition:.15s}
+  @media(hover:hover){.thumb:hover .play span{transform:scale(1.13);background:#e60000}}
+  .wkbadge{position:absolute;left:10px;top:10px;background:rgba(255,255,255,.95);color:var(--brand-d);
+    font-weight:800;font-size:.82rem;padding:4px 11px;border-radius:999px;box-shadow:0 2px 6px rgba(0,0,0,.18)}
+  .dur{position:absolute;right:10px;bottom:10px;background:rgba(0,0,0,.82);color:#fff;
+    padding:3px 9px;border-radius:7px;font-size:.84rem;font-weight:700}
+  .catflag{position:absolute;right:10px;top:10px;color:#fff;padding:4px 11px;border-radius:8px;
+    font-size:.8rem;font-weight:800}
+  .cat5{background:var(--accent)}
+  .cat10{background:var(--brand)}
+  .body{padding:15px 16px 16px;display:flex;flex-direction:column;gap:9px;flex:1}
+  .ttl{font-weight:800;font-size:1.06rem;line-height:1.42}
+  .meta{font-size:.86rem;color:var(--sub);display:flex;flex-wrap:wrap;gap:3px 10px}
+  .meta b{color:var(--ink);font-weight:700}
+  .tags{display:flex;flex-wrap:wrap;gap:6px}
+  .tag{background:var(--chip);color:var(--sub);font-size:.78rem;padding:4px 10px;border-radius:7px;font-weight:600}
+  .tag.eq{background:var(--accent-l);color:var(--accent-d)}
+  .note{font-size:.9rem;color:var(--sub);margin:0}
+  .open{margin-top:auto;min-height:var(--tap);display:flex;align-items:center;justify-content:center;
+    gap:7px;background:var(--brand);color:#fff;text-decoration:none;border-radius:12px;
+    font-weight:800;font-size:1rem;transition:.15s}
+  .open:hover{background:var(--brand-d)}
+  .open:active{transform:scale(.98)}
+  .empty{grid-column:1/-1;text-align:center;color:var(--sub);padding:56px 20px;font-size:1.05rem}
+  .empty button{margin-top:14px;background:var(--brand);color:#fff;border:none;padding:11px 22px;
+    border-radius:12px;font-weight:700;font-size:1rem;cursor:pointer}
+
+  footer{border-top:1px solid var(--line);background:#fff;color:var(--sub);font-size:.85rem;padding:26px 0 44px}
+  footer p{margin:0 0 8px}
+  .top{position:fixed;right:16px;bottom:calc(16px + env(safe-area-inset-bottom));width:52px;height:52px;
+    border-radius:50%;background:var(--brand-d);color:#fff;border:none;font-size:1.4rem;cursor:pointer;
+    box-shadow:var(--shadow-h);opacity:0;pointer-events:none;transition:.25s;z-index:30}
+  .top.show{opacity:1;pointer-events:auto}
+
+  @media(max-width:820px){
+    .fcard{grid-template-columns:1fr}
+    .fthumb{aspect-ratio:16/9;min-height:0}
+  }
+  @media(max-width:720px){
+    body{font-size:16px}
+    .ctop{flex-wrap:wrap}
+    .search{flex:1 1 100%;order:1}
+    .seg{order:2}
+    .moreBtn{order:3}
+    .group{flex-direction:column;gap:6px}
+    .group .lbl{flex:none;padding-top:0}
+    .pills{overflow-x:auto;flex-wrap:nowrap;padding-bottom:4px;-webkit-overflow-scrolling:touch;scrollbar-width:none}
+    .pills::-webkit-scrollbar{display:none}
+    .pill{white-space:nowrap;flex:0 0 auto}
+    .grid{gap:15px}
+  }
+</style>
+</head>
+<body>
+<header class="hero">
+  <span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span>
+  <div class="wrap">
+    <h1 class="brand"><span class="logo">🪑</span> 樂齡運動教案資料庫</h1>
+    <p class="tagline">一週一部，52 週都有新的運動刺激，陪長輩動一動</p>
+    <div class="hero-badges" id="heroBadges"></div>
+  </div>
+</header>
+
+<section class="feature wrap" id="feature"></section>
+
+<div class="controls">
+  <div class="wrap">
+    <div class="ctop">
+      <input id="q" class="search" type="search" inputmode="search"
+        placeholder="搜尋影片、頻道、類型…（例：毛巾、坐姿、有氧）" aria-label="搜尋">
+      <div class="seg" id="seg">
+        <button data-v="全部" class="on">全部</button>
+        <button data-v="5分鐘">5 分鐘</button>
+        <button data-v="10分鐘以上">10 分鐘以上</button>
+      </div>
+      <button class="moreBtn" id="moreBtn" aria-expanded="false">更多篩選 <span class="dot"></span></button>
+    </div>
+    <div class="panel" id="panel">
+      <div class="group"><span class="lbl">姿勢</span><div class="pills" id="fPos"></div></div>
+      <div class="group"><span class="lbl">類型</span><div class="pills" id="fType"></div></div>
+      <div class="group"><span class="lbl">語言</span><div class="pills" id="fLang"></div></div>
+      <div class="group"><span class="lbl">地區</span><div class="pills" id="fCountry"></div></div>
+    </div>
+    <div class="bar2">
+      <span class="count" id="count"></span>
+      <button class="clear" id="clear">✕ 清除全部篩選</button>
+    </div>
+  </div>
+</div>
+
+<section class="wrap">
+  <div class="sec"><h2 id="secTitle">52 週運動計畫</h2><span id="secSub"></span></div>
+  <div class="grid" id="grid"></div>
+</section>
+
+<footer>
+  <div class="wrap">
+    <p>資料為人工整理之公開 YouTube 影片連結，著作權屬各原始頻道所有；本資料庫僅供日照中心、社區關懷據點等非營利推廣使用。</p>
+    <p>播放前請確認影片仍可正常觀看，並依長輩體能調整強度；運動時請準備穩固椅子並注意安全與防跌。標示「約」的時長為概估，請以實際影片為準。</p>
+    <p id="updated"></p>
+  </div>
+</footer>
+
+<button class="top" id="top" aria-label="回到頂端">↑</button>
+
+<script>
+const DATA = /*__DATA__*/[{"id": "tJz9G9wXxlY", "title": "高齡者健康操 國語版（短版）", "channel": "健康九九（衛福部國民健康署）", "country": "台灣", "language": "中文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿/站姿", "types": ["全身"], "equipment": "無 / 椅子", "url": "https://www.youtube.com/watch?v=tJz9G9wXxlY", "thumbnail": "https://i.ytimg.com/vi/tJz9G9wXxlY/hqdefault.jpg", "note": "官方製作、國語口令清楚，坐站皆可，最適合台灣據點直接播放。", "approx": false, "week": 1}, {"id": "-0jlr5gEIZA", "title": "10分鐘長者運動之毛巾操（改善肌肉痠痛）", "channel": "仁愛堂田家炳長者鄰舍中心", "country": "香港", "language": "中文（粵語）", "duration_min": 10, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["毛巾", "伸展"], "equipment": "毛巾、椅子", "url": "https://www.youtube.com/watch?v=-0jlr5gEIZA", "thumbnail": "https://i.ytimg.com/vi/-0jlr5gEIZA/hqdefault.jpg", "note": "使用一條毛巾即可，改善肩頸與肌肉痠痛。", "approx": false, "week": 2}, {"id": "6_sLwwoaWZU", "title": "高齡者向け 5分でできる全身椅子體操", "channel": "フラミンゴの介護予防チャンネル", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿", "types": ["全身", "暖身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=6_sLwwoaWZU", "thumbnail": "https://i.ytimg.com/vi/6_sLwwoaWZU/hqdefault.jpg", "note": "短而完整的坐姿全身操，適合活動前暖身或零碎時間。", "approx": false, "week": 3}, {"id": "zF_2-21l0cw", "title": "中高齡運動－動態伸展操｜12分鐘全身拉筋伸展操", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 12, "length_category": "10分鐘以上", "posture": "站姿", "types": ["伸展"], "equipment": "無", "url": "https://www.youtube.com/watch?v=zF_2-21l0cw", "thumbnail": "https://i.ytimg.com/vi/zF_2-21l0cw/hqdefault.jpg", "note": "物理治療師帶領的全身拉筋，適合運動前後或久坐後伸展。", "approx": false, "week": 4}, {"id": "Q-7wBAa8JXI", "title": "7分鐘有氧長者運動－椅上操（簡單、爆汗及燃脂）", "channel": "仁愛堂田家炳長者鄰舍中心", "country": "香港", "language": "中文（粵語）", "duration_min": 7, "length_category": "5分鐘", "posture": "坐姿", "types": ["有氧"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=Q-7wBAa8JXI", "thumbnail": "https://i.ytimg.com/vi/Q-7wBAa8JXI/hqdefault.jpg", "note": "節奏輕快的椅上有氧，可帶動氣氛，粵語發音但動作示範清楚。", "approx": false, "week": 5}, {"id": "Ydo-56303Zs", "title": "椅子に座って出來る全身運動【10分間の健康體操】", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 10, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=Ydo-56303Zs", "thumbnail": "https://i.ytimg.com/vi/Ydo-56303Zs/hqdefault.jpg", "note": "專為高齡者及機構設計，可直接整段播放跟做。", "approx": false, "week": 6}, {"id": "ukO5bkiVXEU", "title": "高齡彈力帶運動 8分鐘輕鬆上手", "channel": "健康好方法（童綜合醫院）", "country": "台灣", "language": "中文", "duration_min": 8, "length_category": "5分鐘", "posture": "坐姿", "types": ["彈力帶", "肌力"], "equipment": "彈力帶", "url": "https://www.youtube.com/watch?v=ukO5bkiVXEU", "thumbnail": "https://i.ytimg.com/vi/ukO5bkiVXEU/hqdefault.jpg", "note": "醫院製作，8分鐘彈力帶入門，坐著就能練肌耐力。", "approx": false, "week": 7}, {"id": "8_YPlZCmgZM", "title": "歩くのが楽になる【足の運動 15分】椅子に座って出來る", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["下肢", "肌力"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=8_YPlZCmgZM", "thumbnail": "https://i.ytimg.com/vi/8_YPlZCmgZM/hqdefault.jpg", "note": "強化雙腳、讓行走更輕鬆，坐姿安全進行。", "approx": false, "week": 8}, {"id": "Wdn9N1huumE", "title": "4分鐘長者伸展運動（改善痠痛、增加柔軟度）", "channel": "仁愛堂田家炳長者鄰舍中心", "country": "香港", "language": "中文（粵語）", "duration_min": 4, "length_category": "5分鐘", "posture": "坐姿", "types": ["伸展"], "equipment": "無", "url": "https://www.youtube.com/watch?v=Wdn9N1huumE", "thumbnail": "https://i.ytimg.com/vi/Wdn9N1huumE/hqdefault.jpg", "note": "最短的暖身伸展，活動前後都適合。", "approx": false, "week": 9}, {"id": "HwES4OSc9H8", "title": "15-Minute Chair Exercises For Seniors（坐姿全身）", "channel": "ElderfitTV", "country": "歐美（英國）", "language": "英文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=HwES4OSc9H8", "thumbnail": "https://i.ytimg.com/vi/HwES4OSc9H8/hqdefault.jpg", "note": "英文口令，動作簡單易跟，畫面清楚不需器材。", "approx": false, "week": 10}, {"id": "cIVRc80bvJ0", "title": "高齡者體操 Part29 轉倒防止！立位平衡體操", "channel": "ヘルスケア治療院", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "站姿", "types": ["平衡", "防跌"], "equipment": "椅子（扶握）", "url": "https://www.youtube.com/watch?v=cIVRc80bvJ0", "thumbnail": "https://i.ytimg.com/vi/cIVRc80bvJ0/hqdefault.jpg", "note": "站姿平衡、預防跌倒，請扶穩椅背操作（時長以實際影片為準）。", "approx": true, "week": 11}, {"id": "blJpXCU3wg4", "title": "15分鐘長者運動－椅上操（有氧運動、爆汗及燃脂）", "channel": "仁愛堂田家炳長者鄰舍中心", "country": "香港", "language": "中文（粵語）", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["有氧"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=blJpXCU3wg4", "thumbnail": "https://i.ytimg.com/vi/blJpXCU3wg4/hqdefault.jpg", "note": "強度稍高的椅上有氧，適合體能較佳的長輩。", "approx": false, "week": 12}, {"id": "011TAhivk9A", "title": "高齡者向け やさしい春のイス體操（ごぼう先生）", "channel": "ごぼう先生 おひとりさま健康塾", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿", "types": ["全身", "趣味"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=011TAhivk9A", "thumbnail": "https://i.ytimg.com/vi/011TAhivk9A/hqdefault.jpg", "note": "日本超人氣銀髮運動講師，氣氛溫和有趣，長輩接受度高（時長以實際影片為準）。", "approx": true, "week": 13}, {"id": "KXW9jvBp8GY", "title": "20分鐘樂齡輕鬆動一動！預防肌少症，4個居家阻力運動", "channel": "中山醫學大學附設醫院", "country": "台灣", "language": "中文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "站姿", "types": ["肌力", "阻力", "防肌少症"], "equipment": "無 / 水瓶", "url": "https://www.youtube.com/watch?v=KXW9jvBp8GY", "thumbnail": "https://i.ytimg.com/vi/KXW9jvBp8GY/hqdefault.jpg", "note": "醫院製作，針對肌少症的阻力訓練，可用水瓶當負重。", "approx": false, "week": 14}, {"id": "FtEGkUsK1uM", "title": "高齡者向き ごぼう先生の冬のイス體操", "channel": "ごぼう先生 おひとりさま健康塾", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿", "types": ["全身", "趣味"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=FtEGkUsK1uM", "thumbnail": "https://i.ytimg.com/vi/FtEGkUsK1uM/hqdefault.jpg", "note": "日本人氣講師的冬季主題椅子操，氣氛溫和（時長以實際影片為準）。", "approx": true, "week": 15}, {"id": "X9oDtVUhUB8", "title": "中高齡運動｜銀髮族運動｜坐姿肌力運動｜上肢肌力訓練", "channel": "臺北市政府體育局－樂齡巡迴運動指導團", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["肌力", "上肢"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=X9oDtVUhUB8", "thumbnail": "https://i.ytimg.com/vi/X9oDtVUhUB8/hqdefault.jpg", "note": "官方指導團製作，坐姿上肢肌力訓練（時長以實際影片為準）。", "approx": true, "week": 16}, {"id": "cWuu-bgV79Y", "title": "高齡者向け 夏のイス體操 ごぼう先生", "channel": "ごぼう先生 おひとりさま健康塾", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿", "types": ["全身", "趣味"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=cWuu-bgV79Y", "thumbnail": "https://i.ytimg.com/vi/cWuu-bgV79Y/hqdefault.jpg", "note": "夏季主題椅子操，輕鬆好跟（時長以實際影片為準）。", "approx": true, "week": 17}, {"id": "ilcK3IOlmdI", "title": "中高齡運動｜銀髮族運動｜椅子有氧訓練", "channel": "臺北市政府體育局－樂齡巡迴運動指導團", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["有氧"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=ilcK3IOlmdI", "thumbnail": "https://i.ytimg.com/vi/ilcK3IOlmdI/hqdefault.jpg", "note": "官方指導團製作的椅子有氧（時長以實際影片為準）。", "approx": true, "week": 18}, {"id": "2kLUJG2Hjjk", "title": "熱中症對策 ごぼう先生とイス體操", "channel": "ごぼう先生 おひとりさま健康塾", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿", "types": ["全身", "趣味"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=2kLUJG2Hjjk", "thumbnail": "https://i.ytimg.com/vi/2kLUJG2Hjjk/hqdefault.jpg", "note": "夏天防中暑主題的椅子操（時長以實際影片為準）。", "approx": true, "week": 19}, {"id": "ntDLjoJMHk8", "title": "20 Min Chair Exercises for Seniors（坐姿有氧）", "channel": "HASfit", "country": "歐美（美國）", "language": "英文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["有氧"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=ntDLjoJMHk8", "thumbnail": "https://i.ytimg.com/vi/ntDLjoJMHk8/hqdefault.jpg", "note": "知名健身頻道 HASfit，坐姿有氧，節奏穩定。", "approx": false, "week": 20}, {"id": "c0E1c5KjT94", "title": "用毛巾做！改善肩頸痠痛體操 #65", "channel": "ヘルスケア治療院", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿", "types": ["毛巾", "伸展"], "equipment": "毛巾、椅子", "url": "https://www.youtube.com/watch?v=c0E1c5KjT94", "thumbnail": "https://i.ytimg.com/vi/c0E1c5KjT94/hqdefault.jpg", "note": "一條毛巾改善肩頸僵硬，動作和緩（時長以實際影片為準）。", "approx": true, "week": 21}, {"id": "_w50TfdCmKU", "title": "高齡者健康操（完整版）", "channel": "衛福部國民健康署", "country": "台灣", "language": "中文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿/站姿", "types": ["全身"], "equipment": "無 / 椅子", "url": "https://www.youtube.com/watch?v=_w50TfdCmKU", "thumbnail": "https://i.ytimg.com/vi/_w50TfdCmKU/hqdefault.jpg", "note": "官方完整版，坐站皆有，最適合台灣據點作為固定教案。", "approx": false, "week": 22}, {"id": "b2DYU7ZQgN0", "title": "Standing Warm-Up Routine 站姿暖身", "channel": "More Life Health Seniors", "country": "歐美（澳洲）", "language": "英文", "duration_min": 6, "length_category": "5分鐘", "posture": "站姿", "types": ["暖身"], "equipment": "無", "url": "https://www.youtube.com/watch?v=b2DYU7ZQgN0", "thumbnail": "https://i.ytimg.com/vi/b2DYU7ZQgN0/hqdefault.jpg", "note": "物理治療師帶的站姿暖身，運動前先做（時長以實際影片為準）。", "approx": true, "week": 23}, {"id": "5dTtSRVUNjQ", "title": "椅子に座って出來る【おはよう體操 20分】", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身", "暖身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=5dTtSRVUNjQ", "thumbnail": "https://i.ytimg.com/vi/5dTtSRVUNjQ/hqdefault.jpg", "note": "適合早上的暖身操，溫和喚醒全身。", "approx": false, "week": 24}, {"id": "IRO6OY64jp0", "title": "中高齡運動－10分鐘輕鬆鍛鍊心肺耐力（無跳躍、無深蹲）", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 10, "length_category": "10分鐘以上", "posture": "站姿", "types": ["有氧"], "equipment": "無", "url": "https://www.youtube.com/watch?v=IRO6OY64jp0", "thumbnail": "https://i.ytimg.com/vi/IRO6OY64jp0/hqdefault.jpg", "note": "低衝擊心肺有氧，膝蓋友善、不跳躍。", "approx": false, "week": 25}, {"id": "f866bETPlSw", "title": "食事前におすすめ「秋のイス體操」ごぼう先生", "channel": "ごぼう先生 おひとりさま健康塾", "country": "日本", "language": "日文", "duration_min": 5, "length_category": "5分鐘", "posture": "坐姿", "types": ["全身", "趣味"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=f866bETPlSw", "thumbnail": "https://i.ytimg.com/vi/f866bETPlSw/hqdefault.jpg", "note": "秋季主題椅子操，飯前活動筋骨、促進食慾（時長以實際影片為準）。", "approx": true, "week": 26}, {"id": "5Oqfnlu8VBU", "title": "中年後開始肌力訓練！必練的五種動作", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 12, "length_category": "10分鐘以上", "posture": "站姿", "types": ["肌力"], "equipment": "無", "url": "https://www.youtube.com/watch?v=5Oqfnlu8VBU", "thumbnail": "https://i.ytimg.com/vi/5Oqfnlu8VBU/hqdefault.jpg", "note": "物理治療師示範五個基礎肌力動作（時長以實際影片為準）。", "approx": true, "week": 27}, {"id": "w0_-OFRNj24", "title": "自宅で認知症予防 座ったまま20分リズム體操（ごぼう先生）", "channel": "ごぼう先生 おひとりさま健康塾", "country": "日本", "language": "日文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["有氧", "認知", "趣味"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=w0_-OFRNj24", "thumbnail": "https://i.ytimg.com/vi/w0_-OFRNj24/hqdefault.jpg", "note": "結合節奏與動腦，預防失智，氣氛活潑。", "approx": false, "week": 28}, {"id": "3jdBXGVGj1w", "title": "20 Min Full Body Seated Chair Exercises（坐姿全身）", "channel": "Grow Young Fitness", "country": "歐美（美國）", "language": "英文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=3jdBXGVGj1w", "thumbnail": "https://i.ytimg.com/vi/3jdBXGVGj1w/hqdefault.jpg", "note": "英文，動作親切、鼓勵性強，整段坐姿全身運動。", "approx": false, "week": 29}, {"id": "BPdDJCwmcDc", "title": "體幹強化【上半身の健康體操 30分】", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 30, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["上半身", "核心", "肌力"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=BPdDJCwmcDc", "thumbnail": "https://i.ytimg.com/vi/BPdDJCwmcDc/hqdefault.jpg", "note": "較長的上半身與核心強化課程，可作為主活動。", "approx": false, "week": 30}, {"id": "hzYCL86BFH8", "title": "Full Chair Workout - No Equipment, Seated（坐姿全身）", "channel": "More Life Health Seniors", "country": "歐美（澳洲）", "language": "英文", "duration_min": 25, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身"], "equipment": "無 / 椅子", "url": "https://www.youtube.com/watch?v=hzYCL86BFH8", "thumbnail": "https://i.ytimg.com/vi/hzYCL86BFH8/hqdefault.jpg", "note": "由銀髮專業物理治療師帶領，免器材完整坐姿課程（時長以實際影片為準）。", "approx": true, "week": 31}, {"id": "jPtwQKiNlSE", "title": "椅子に座って 6種ゆっくり全身伸展【10分】", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 10, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["伸展"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=jPtwQKiNlSE", "thumbnail": "https://i.ytimg.com/vi/jPtwQKiNlSE/hqdefault.jpg", "note": "附解說的緩和全身伸展，放鬆肌肉。", "approx": false, "week": 32}, {"id": "SBf18GmzTsQ", "title": "中高齡運動－15分鐘有氧運動促進心肺健康", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "站姿", "types": ["有氧"], "equipment": "無", "url": "https://www.youtube.com/watch?v=SBf18GmzTsQ", "thumbnail": "https://i.ytimg.com/vi/SBf18GmzTsQ/hqdefault.jpg", "note": "15分鐘心肺有氧，提升耐力與循環。", "approx": false, "week": 33}, {"id": "24Cw4i-LVog", "title": "簡單!椅子に座って【健康體操】高齡者向け", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 10, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=24Cw4i-LVog", "thumbnail": "https://i.ytimg.com/vi/24Cw4i-LVog/hqdefault.jpg", "note": "可直接整段播放的坐姿健康操（時長以實際影片為準）。", "approx": true, "week": 34}, {"id": "40Zn6lQ0ebI", "title": "中高齡運動－15分鐘燃脂有氧運動", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "站姿", "types": ["有氧", "燃脂"], "equipment": "無", "url": "https://www.youtube.com/watch?v=40Zn6lQ0ebI", "thumbnail": "https://i.ytimg.com/vi/40Zn6lQ0ebI/hqdefault.jpg", "note": "幫助燃脂的有氧運動，強度中等。", "approx": false, "week": 35}, {"id": "4oM63sCdm9Y", "title": "椅子に座って【健康體操 20分】", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=4oM63sCdm9Y", "thumbnail": "https://i.ytimg.com/vi/4oM63sCdm9Y/hqdefault.jpg", "note": "20分鐘完整坐姿健康操，機構可直接播放。", "approx": false, "week": 36}, {"id": "ICP3lxCvIw8", "title": "中高齡運動－舒緩流動，放鬆肌肉緊繃", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 12, "length_category": "10分鐘以上", "posture": "站姿", "types": ["伸展", "放鬆"], "equipment": "無", "url": "https://www.youtube.com/watch?v=ICP3lxCvIw8", "thumbnail": "https://i.ytimg.com/vi/ICP3lxCvIw8/hqdefault.jpg", "note": "舒緩緊繃、打開身體，適合收操（時長以實際影片為準）。", "approx": true, "week": 37}, {"id": "ZQ2j38EjqPA", "title": "ごぼう先生の完全イス體操", "channel": "ごぼう先生 おひとりさま健康塾", "country": "日本", "language": "日文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身", "趣味"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=ZQ2j38EjqPA", "thumbnail": "https://i.ytimg.com/vi/ZQ2j38EjqPA/hqdefault.jpg", "note": "ごぼう先生較完整的椅子操（時長以實際影片為準）。", "approx": true, "week": 38}, {"id": "dRJ59NlUaF4", "title": "年長者必做的五個運動", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 12, "length_category": "10分鐘以上", "posture": "站姿", "types": ["肌力"], "equipment": "無", "url": "https://www.youtube.com/watch?v=dRJ59NlUaF4", "thumbnail": "https://i.ytimg.com/vi/dRJ59NlUaF4/hqdefault.jpg", "note": "針對長輩的五個關鍵動作（時長以實際影片為準）。", "approx": true, "week": 39}, {"id": "srGeV2oY-jU", "title": "椅子に座って【毛巾體操】肩/上半身/全身", "channel": "スギリハCH「歌体操・健康体操」", "country": "日本", "language": "日文", "duration_min": 12, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["毛巾", "伸展"], "equipment": "毛巾、椅子", "url": "https://www.youtube.com/watch?v=srGeV2oY-jU", "thumbnail": "https://i.ytimg.com/vi/srGeV2oY-jU/hqdefault.jpg", "note": "用毛巾做的肩部與上半身伸展（時長以實際影片為準）。", "approx": true, "week": 40}, {"id": "cMQFDWxmCT8", "title": "中高齡運動－彈力帶上肢肌力訓練（坐姿）", "channel": "北木健身治療師 Kopi", "country": "台灣", "language": "中文", "duration_min": 12, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["彈力帶", "上肢", "肌力"], "equipment": "彈力帶", "url": "https://www.youtube.com/watch?v=cMQFDWxmCT8", "thumbnail": "https://i.ytimg.com/vi/cMQFDWxmCT8/hqdefault.jpg", "note": "坐著用彈力帶強化手臂力量（時長以實際影片為準）。", "approx": true, "week": 41}, {"id": "P9xsYEzYNrE", "title": "10-Minute Balance Workout 平衡運動", "channel": "More Life Health Seniors", "country": "歐美（澳洲）", "language": "英文", "duration_min": 10, "length_category": "10分鐘以上", "posture": "站姿", "types": ["平衡", "防跌"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=P9xsYEzYNrE", "thumbnail": "https://i.ytimg.com/vi/P9xsYEzYNrE/hqdefault.jpg", "note": "物理治療師帶的平衡訓練，請扶穩椅子。", "approx": false, "week": 42}, {"id": "BzOnCqb8Vh8", "title": "中高齡運動｜銀髮族運動｜站姿肌力運動", "channel": "臺北市政府體育局－樂齡巡迴運動指導團", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "站姿", "types": ["肌力"], "equipment": "無", "url": "https://www.youtube.com/watch?v=BzOnCqb8Vh8", "thumbnail": "https://i.ytimg.com/vi/BzOnCqb8Vh8/hqdefault.jpg", "note": "官方指導團站姿肌力訓練（時長以實際影片為準）。", "approx": true, "week": 43}, {"id": "nL574eu-rro", "title": "20 Min Low Impact Cardio & Abs 坐姿有氧", "channel": "Senior Fitness With Meredith", "country": "歐美（美國）", "language": "英文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["有氧", "核心"], "equipment": "無", "url": "https://www.youtube.com/watch?v=nL574eu-rro", "thumbnail": "https://i.ytimg.com/vi/nL574eu-rro/hqdefault.jpg", "note": "坐姿低衝擊有氧加核心，適合初學者。", "approx": false, "week": 44}, {"id": "G-jYYCDmb-g", "title": "中高齡運動｜銀髮族運動｜座椅下肢肌力訓練", "channel": "臺北市政府體育局－樂齡巡迴運動指導團", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["下肢", "肌力"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=G-jYYCDmb-g", "thumbnail": "https://i.ytimg.com/vi/G-jYYCDmb-g/hqdefault.jpg", "note": "坐在椅子上訓練下肢，預防無力跌倒（時長以實際影片為準）。", "approx": true, "week": 45}, {"id": "hRrrsD2KrLc", "title": "Go-To 20Min 坐姿低衝擊有氧", "channel": "Senior Fitness With Meredith", "country": "歐美（美國）", "language": "英文", "duration_min": 20, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["有氧"], "equipment": "無", "url": "https://www.youtube.com/watch?v=hRrrsD2KrLc", "thumbnail": "https://i.ytimg.com/vi/hRrrsD2KrLc/hqdefault.jpg", "note": "人氣坐姿有氧，溫和提升心率。", "approx": false, "week": 46}, {"id": "bTTQWwJDOeA", "title": "15分鐘 樂齡彈力圈｜彈力帶｜肌力訓練", "channel": "中華民國健身運動協會", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿/站姿", "types": ["彈力帶", "肌力"], "equipment": "彈力帶", "url": "https://www.youtube.com/watch?v=bTTQWwJDOeA", "thumbnail": "https://i.ytimg.com/vi/bTTQWwJDOeA/hqdefault.jpg", "note": "用彈力圈做全身肌力，坐站皆可。", "approx": false, "week": 47}, {"id": "Cy3j2kvfoks", "title": "Seated Low Impact Cardio Fun 30分坐姿有氧", "channel": "Senior Fitness With Meredith", "country": "歐美（美國）", "language": "英文", "duration_min": 30, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["有氧"], "equipment": "無", "url": "https://www.youtube.com/watch?v=Cy3j2kvfoks", "thumbnail": "https://i.ytimg.com/vi/Cy3j2kvfoks/hqdefault.jpg", "note": "30分鐘趣味坐姿有氧，免器材。", "approx": false, "week": 48}, {"id": "Ab71pvfIb1w", "title": "30分鐘｜中高齡適合，簡易彈力帶運動", "channel": "中華民國健身運動協會", "country": "台灣", "language": "中文", "duration_min": 30, "length_category": "10分鐘以上", "posture": "站姿", "types": ["彈力帶", "肌力"], "equipment": "彈力帶", "url": "https://www.youtube.com/watch?v=Ab71pvfIb1w", "thumbnail": "https://i.ytimg.com/vi/Ab71pvfIb1w/hqdefault.jpg", "note": "完整30分鐘彈力帶課程，可當主活動。", "approx": false, "week": 49}, {"id": "4Uzk6f2GnO8", "title": "10 Min Chair Workout for Seniors 坐姿全身", "channel": "HASfit", "country": "歐美（美國）", "language": "英文", "duration_min": 10, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["全身"], "equipment": "椅子", "url": "https://www.youtube.com/watch?v=4Uzk6f2GnO8", "thumbnail": "https://i.ytimg.com/vi/4Uzk6f2GnO8/hqdefault.jpg", "note": "HASfit 10分鐘椅上運動，短而完整。", "approx": false, "week": 50}, {"id": "7pIeSsndwbA", "title": "臺北市衛生局：高齡者有氧運動健康操", "channel": "臺北市衛生局", "country": "台灣", "language": "中文", "duration_min": 12, "length_category": "10分鐘以上", "posture": "站姿", "types": ["有氧"], "equipment": "無", "url": "https://www.youtube.com/watch?v=7pIeSsndwbA", "thumbnail": "https://i.ytimg.com/vi/7pIeSsndwbA/hqdefault.jpg", "note": "官方有氧健康操，動作大方好跟（時長以實際影片為準）。", "approx": true, "week": 51}, {"id": "c6ghvdqw8l4", "title": "銀髮族身腦適能運動－彈力帶肌力訓練（長輩運動版）", "channel": "永和耕莘（吳孟恬）", "country": "台灣", "language": "中文", "duration_min": 15, "length_category": "10分鐘以上", "posture": "坐姿", "types": ["彈力帶", "肌力", "認知"], "equipment": "彈力帶", "url": "https://www.youtube.com/watch?v=c6ghvdqw8l4", "thumbnail": "https://i.ytimg.com/vi/c6ghvdqw8l4/hqdefault.jpg", "note": "結合身體與動腦的彈力帶訓練（時長以實際影片為準）。", "approx": true, "week": 52}];
+
+const state = { q:"", len:"全部", pos:"全部", type:"全部", lang:"全部", country:"全部" };
+const DEFAULT = {...state};
+
+const uniq = a => [...new Set(a)];
+const POS  = ["全部", ...uniq(DATA.flatMap(d=>d.posture.split("/")))];
+const TYPES= ["全部", ...uniq(DATA.flatMap(d=>d.types))];
+const LANG = ["全部", ...uniq(DATA.map(d=>d.language.replace(/（.*）/,"")))];
+const COUNTRY = ["全部", ...uniq(DATA.map(d=>d.country.replace(/（.*）/,"")))];
+
+function currentWeek(){
+  const now=new Date(), start=new Date(now.getFullYear(),0,1);
+  const w=Math.ceil((((now-start)/86400000)+start.getDay()+1)/7);
+  const max=Math.max(...DATA.map(d=>d.week));
+  return Math.min(Math.max(w,1),max);
+}
+const WK = currentWeek();
+
+function buildPills(host,items,key){
+  document.getElementById(host).innerHTML=items.map(v=>
+    `<button class="pill ${state[key]===v?'on':''}" data-k="${key}" data-v="${v}">${v}</button>`).join("");
+}
+function refreshPills(){
+  buildPills("fPos",POS,"pos"); buildPills("fType",TYPES,"type");
+  buildPills("fLang",LANG,"lang"); buildPills("fCountry",COUNTRY,"country");
+  document.querySelectorAll("#seg button").forEach(b=>b.classList.toggle("on",b.dataset.v===state.len));
+  const active=JSON.stringify(state)!==JSON.stringify(DEFAULT);
+  document.getElementById("clear").classList.toggle("show",active);
+  document.getElementById("moreBtn").classList.toggle("has",
+    state.pos!=="全部"||state.type!=="全部"||state.lang!=="全部"||state.country!=="全部");
+}
+function match(d){
+  if(state.len!=="全部" && d.length_category!==state.len) return false;
+  if(state.pos!=="全部" && !d.posture.includes(state.pos)) return false;
+  if(state.type!=="全部" && !d.types.includes(state.type)) return false;
+  if(state.lang!=="全部" && !d.language.includes(state.lang)) return false;
+  if(state.country!=="全部" && !d.country.includes(state.country)) return false;
+  if(state.q){
+    const hay=(d.title+d.channel+d.country+d.language+d.posture+d.types.join("")+d.equipment+d.note).toLowerCase();
+    if(!hay.includes(state.q.toLowerCase())) return false;
+  }
+  return true;
+}
+const durTxt=d=>`${d.approx?'約':''}${d.duration_min} 分`;
+
+function renderFeature(){
+  const d = DATA.find(x=>x.week===WK) || DATA[0];
+  document.getElementById("feature").innerHTML=`
+    <div class="fcard">
+      <a class="fthumb" href="${d.url}" target="_blank" rel="noopener" aria-label="開啟 ${d.title}">
+        <img src="${d.thumbnail}" alt="${d.title}" onerror="this.src='https://i.ytimg.com/vi/${d.id}/mqdefault.jpg'">
+        <span class="fribbon">🌟 本週運動・第 ${d.week} 週</span>
+        <span class="fplay"><span>▶</span></span>
+        <span class="fdur">${durTxt(d)}</span>
+      </a>
+      <div class="fbody">
+        <span class="feyebrow"><span class="wk">${d.length_category}</span> ${d.posture}</span>
+        <h2 class="ftitle">${d.title}</h2>
+        <div class="fmeta">📺 <b>${d.channel}</b>　|　${d.country}・${d.language}</div>
+        <div class="ftags tags">
+          ${d.types.map(t=>`<span class="tag">${t}</span>`).join("")}
+          <span class="tag eq">道具：${d.equipment}</span>
+        </div>
+        <p class="fnote">${d.note}</p>
+        <a class="fopen" href="${d.url}" target="_blank" rel="noopener">▶ 播放本週運動</a>
+      </div>
+    </div>`;
+}
+
+function render(){
+  const list=DATA.filter(match).sort((a,b)=>a.week-b.week);
+  document.getElementById("count").textContent=`顯示 ${list.length} / ${DATA.length} 部`;
+  const active=JSON.stringify(state)!==JSON.stringify(DEFAULT);
+  document.getElementById("secTitle").textContent = active ? "篩選結果" : "52 週運動計畫";
+  document.getElementById("secSub").textContent = active ? "" : "每週一部，依序播放或自由挑選";
+  const grid=document.getElementById("grid");
+  if(!list.length){
+    grid.innerHTML=`<div class="empty">找不到符合條件的影片 🙈<br><button onclick="resetAll()">清除篩選重新查詢</button></div>`;
+    return;
+  }
+  grid.innerHTML=list.map(d=>{
+    const is5=d.length_category==="5分鐘";
+    return `<article class="card">
+      <a class="thumb" href="${d.url}" target="_blank" rel="noopener" aria-label="開啟 ${d.title}">
+        <img loading="lazy" src="${d.thumbnail}" alt="${d.title}" onerror="this.src='https://i.ytimg.com/vi/${d.id}/mqdefault.jpg'">
+        <span class="wkbadge">第 ${d.week} 週</span>
+        <span class="catflag ${is5?'cat5':'cat10'}">${d.length_category}</span>
+        <span class="play"><span>▶</span></span>
+        <span class="dur">${durTxt(d)}</span>
+      </a>
+      <div class="body">
+        <h3 class="ttl">${d.title}</h3>
+        <div class="meta"><span>📺 <b>${d.channel}</b></span><span>${d.country}・${d.language}</span></div>
+        <div class="tags">
+          <span class="tag">${d.posture}</span>
+          ${d.types.map(t=>`<span class="tag">${t}</span>`).join("")}
+          <span class="tag eq">道具：${d.equipment}</span>
+        </div>
+        <p class="note">${d.note}</p>
+        <a class="open" href="${d.url}" target="_blank" rel="noopener">▶ 開啟 YouTube 跟著做</a>
+      </div>
+    </article>`;
+  }).join("");
+}
+
+function resetAll(){ Object.assign(state,DEFAULT); document.getElementById("q").value=""; refreshPills(); render(); }
+window.resetAll=resetAll;
+
+document.addEventListener("click",e=>{
+  const seg=e.target.closest("#seg button");
+  if(seg){ state.len=seg.dataset.v; refreshPills(); render(); return; }
+  const p=e.target.closest(".pill");
+  if(p){ state[p.dataset.k]=p.dataset.v; refreshPills(); render(); }
+});
+document.getElementById("q").addEventListener("input",e=>{ state.q=e.target.value; refreshPills(); render(); });
+document.getElementById("clear").addEventListener("click",resetAll);
+const panel=document.getElementById("panel"), mb=document.getElementById("moreBtn");
+mb.addEventListener("click",()=>{ const o=panel.classList.toggle("open"); mb.setAttribute("aria-expanded",o); });
+
+const topBtn=document.getElementById("top");
+addEventListener("scroll",()=>topBtn.classList.toggle("show",scrollY>600),{passive:true});
+topBtn.addEventListener("click",()=>scrollTo({top:0,behavior:"smooth"}));
+
+const c5=DATA.filter(d=>d.length_category==="5分鐘").length;
+document.getElementById("heroBadges").innerHTML=
+  `<span class="hb">📚 共 ${DATA.length} 部・52 週</span>`+
+  `<span class="hb">⏱️ 5 分鐘 ${c5} 部</span>`+
+  `<span class="hb">🕙 10 分鐘以上 ${DATA.length-c5} 部</span>`+
+  `<span class="hb">🌏 台 / 港 / 日 / 歐美</span>`;
+document.getElementById("updated").textContent="最後更新：2026-06-21｜共收錄 "+DATA.length+" 部影片（對應一年 52 週）";
+
+renderFeature();
+refreshPills();
+render();
+</script>
+</body>
+</html>
